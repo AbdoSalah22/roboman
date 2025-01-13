@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -117,11 +118,24 @@ public class PlayerController : MonoBehaviour
 
     void Die()
     {
-        Debug.Log("Player has died!");
+        // Trigger the death animation
         animator.SetTrigger("die");
-        Destroy(gameObject);
-        // Add death logic here (e.g., reload scene, show game over screen)
+
+        // Disable player controls
+        this.enabled = false;
+        rb.velocity = Vector2.zero;  // Stop movement
+
+        // Start the coroutine to destroy the player after a delay
+        StartCoroutine(DeathDelay());
     }
+
+    // Coroutine to wait before destroying the player
+    private IEnumerator DeathDelay()
+    {
+        yield return new WaitForSeconds(1f);
+        Destroy(gameObject);
+    }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
