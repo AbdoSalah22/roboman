@@ -146,7 +146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d47447537ed3c44c84e71281a328d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  player: {fileID: 7491886276184886479, guid: 26e7bd5476df05a4e8608ae14995611f, type: 3}
   detectionRadius: 15
   projectilePrefab: {fileID: 3606807730447043654, guid: 776208c6cb4ca8f44a6b72417ab8d03e, type: 3}
   firePoint: {fileID: 2667021230807332458}
