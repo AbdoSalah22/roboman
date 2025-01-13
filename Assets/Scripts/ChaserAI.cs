@@ -4,11 +4,11 @@ public class ChaserAI : MonoBehaviour
 {
     public Transform player; // Assign the player in the Inspector
     public Transform waypoint1, waypoint2; // Assign waypoints in the Inspector
-    public float patrolSpeed = 3f;
-    public float chaseSpeed = 6f;
-    public float detectionRadius = 20f;
-    public float stopChaseRadius = 25f;
-    public int explosionDamage = 10;
+    private float patrolSpeed = 3f;
+    private float chaseSpeed = 6f;
+    private float detectionRadius = 15f;
+    private float stopChaseRadius = 20f;
+    private int explosionDamage = 25;
 
     private Vector3 nextWaypoint;
     private bool isChasing = false;

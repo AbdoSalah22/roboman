@@ -27,13 +27,13 @@ public class PlayerHealthbar : MonoBehaviour
     public void HealthBarFiller()
     {
         healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, 1);
-        print("Fill: " + health);
+        //print("Fill: " + health);
     }
 
     public void ChangeBarColor()
     {
         Color healthColor = Color.Lerp(Color.red, Color.green, (health / maxHealth));
         healthBar.color = healthColor;
-        print("Color: " + health);
+        //print("Color: " + health);
     }
 }
