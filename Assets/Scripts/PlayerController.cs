@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip DamageSound;
 
+    public AudioClip DeathSound;
+
     public float wallBounceForce = 5f; // Force applied when bouncing off walls
     private bool isHittingWall = false;
     // private bool isJumping = false;
@@ -146,6 +148,8 @@ public class PlayerController : MonoBehaviour
 
      public void Die()
     {
+
+        SoundManager.instance.PlaySFX(DeathSound); // Play death sound
         // Trigger the death animation
         animator.SetTrigger("die");
 
