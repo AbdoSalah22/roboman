@@ -11,15 +11,15 @@ public class PlayerHealthbar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        health = player.currentHealth;
-        maxHealth = player.maxHealth;
+        health = player.getHealth();
+        maxHealth = player.getMaxHealth();
     }
 
     // Update is called once per frame
     void Update()
     {
-        health = player.currentHealth;
-        maxHealth = player.maxHealth;
+        health = player.getHealth();
+        maxHealth = player.getMaxHealth();
         HealthBarFiller();
         ChangeBarColor();
     }
@@ -27,11 +27,13 @@ public class PlayerHealthbar : MonoBehaviour
     public void HealthBarFiller()
     {
         healthBar.fillAmount = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, 1);
+        print("Fill: " + health);
     }
 
     public void ChangeBarColor()
     {
         Color healthColor = Color.Lerp(Color.red, Color.green, (health / maxHealth));
         healthBar.color = healthColor;
+        print("Color: " + health);
     }
 }

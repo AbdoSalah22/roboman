@@ -15,7 +15,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private int facingDirection = 1; // 1 for right, -1 for left
 
-    public int currentHealth; // Current health
+    private int currentHealth = 80; // Current health
     public int maxHealth = 100; // Maximum health
 
     public float dashSpeed = 18f;  // Dash speed
@@ -153,5 +153,14 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
             isGrounded = false;
+    }
+    public int getHealth()
+    {
+        return currentHealth;
+    }
+
+    public int getMaxHealth()
+    {
+        return maxHealth;
     }
 }
