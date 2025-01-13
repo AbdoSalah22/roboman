@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 7799672278155022432}
   - component: {fileID: 8927781487616088668}
   - component: {fileID: 3858605309614797972}
+  - component: {fileID: 5489020062942683252}
   - component: {fileID: 1007095525678919506}
   m_Layer: 0
   m_Name: Player
@@ -140,10 +141,12 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   groundCheck: {fileID: 0}
-  currentHealth: 50
   maxHealth: 100
   dashSpeed: 30
   dashDuration: 0.3
+  JumpSound: {fileID: 0}
+  DamageSound: {fileID: 0}
+  wallBounceForce: 5
 --- !u!50 &8927781487616088668
 Rigidbody2D:
   serializedVersion: 4
@@ -178,7 +181,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6790629764098812951}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -216,6 +219,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.375, y: 1.8125}
   m_EdgeRadius: 0
+--- !u!70 &5489020062942683252
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6790629764098812951}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.070055485, y: 0}
+  m_Size: {x: 1.234889, y: 1.8125}
+  m_Direction: 0
 --- !u!95 &1007095525678919506
 Animator:
   serializedVersion: 5
