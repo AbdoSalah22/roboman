@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip DeathSound;
 
-    public float wallBounceForce = 5f; // Force applied when bouncing off walls
+    public float wallBounceForce = 0f; // Force applied when bouncing off walls
     private bool isHittingWall = false;
     // private bool isJumping = false;
     private bool wasGrounded;

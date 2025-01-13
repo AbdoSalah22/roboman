@@ -144,9 +144,10 @@ MonoBehaviour:
   maxHealth: 100
   dashSpeed: 30
   dashDuration: 0.3
-  JumpSound: {fileID: 0}
-  DamageSound: {fileID: 0}
-  wallBounceForce: 5
+  JumpSound: {fileID: 8300000, guid: 5ea2f9f1d2f2b4948af056ac9eeb7c2a, type: 3}
+  DamageSound: {fileID: 8300000, guid: d2e4c30e7904305479090d6dd79ce80b, type: 3}
+  DeathSound: {fileID: 8300000, guid: c8f960a70666e0a478ca21de44923cf9, type: 3}
+  wallBounceForce: 0
 --- !u!50 &8927781487616088668
 Rigidbody2D:
   serializedVersion: 4
@@ -170,7 +171,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
