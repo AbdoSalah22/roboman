@@ -102,6 +102,7 @@ MonoBehaviour:
   speed: 30
   damage: 1
   lifetime: 5
+  laserSound: {fileID: 8300000, guid: 3b9b29a8ff142684a949ea6598472bb6, type: 3}
 --- !u!50 &1611162450568687682
 Rigidbody2D:
   serializedVersion: 4
