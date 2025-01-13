@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private int facingDirection = 1; // 1 for right, -1 for left
 
+    public int currentHealth; // Current health
     public int maxHealth = 100; // Maximum health
-    private int currentHealth; // Current health
 
     public float dashSpeed = 18f;  // Dash speed
     public float dashDuration = 0.3f; // Duration of the dash
@@ -118,6 +118,8 @@ public class PlayerController : MonoBehaviour
     void Die()
     {
         Debug.Log("Player has died!");
+        animator.SetTrigger("die");
+        Destroy(gameObject);
         // Add death logic here (e.g., reload scene, show game over screen)
     }
 

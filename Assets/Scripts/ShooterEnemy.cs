@@ -12,14 +12,16 @@ public class ShooterEnemy : MonoBehaviour
 
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
-
-        if (distanceToPlayer <= detectionRadius) // If the player is within the detection range
+        if (player != null)
         {
-            if (Time.time >= nextShootTime) // Shoot every `shootInterval` seconds
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+            if (distanceToPlayer <= detectionRadius) // If the player is within the detection range
             {
-                ShootProjectile();
-                nextShootTime = Time.time + shootInterval; // Reset shoot time
+                if (Time.time >= nextShootTime) // Shoot every `shootInterval` seconds
+                {
+                    ShootProjectile();
+                    nextShootTime = Time.time + shootInterval; // Reset shoot time
+                }
             }
         }
     }
