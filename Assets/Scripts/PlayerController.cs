@@ -23,6 +23,10 @@ public class PlayerController : MonoBehaviour
     private bool isDashing;
     private float dashTime;
 
+    public AudioClip JumpSound;
+
+    public AudioClip DamageSound;
+
     void Start()
     {
         currentHealth = maxHealth; // Initialize health
@@ -59,6 +63,7 @@ public class PlayerController : MonoBehaviour
         // Check for jumping input and whether the player is grounded
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
+            SoundManager.instance.PlaySFX(JumpSound); // Play jump sound
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             animator.SetTrigger("jump"); // Trigger jump animation
         }
@@ -103,6 +108,7 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        SoundManager.instance.PlaySFX(DamageSound); // Play damage sound
         currentHealth -= damage;
         Debug.Log("Player Health: " + currentHealth);
 
