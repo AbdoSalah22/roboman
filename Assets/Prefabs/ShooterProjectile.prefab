@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 15
   damage: 10
+  laserSound: {fileID: 8300000, guid: 6a0c7cb31668cd94d819b28281a2b27a, type: 3}
 --- !u!50 &1611162450568687682
 Rigidbody2D:
   serializedVersion: 4
