@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  jumpForce: 22
+  jumpForce: 20
   projectilePrefab: {fileID: 3606807730447043654, guid: 223339e9d0b7f244c925e60b55c31fb1, type: 3}
   firePoint: {fileID: 584111307473293517}
   groundLayer:
