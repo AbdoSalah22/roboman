@@ -27,16 +27,25 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip DamageSound;
 
+    public float wallBounceForce = 5f; // Force applied when bouncing off walls
+    private bool isHittingWall = false;
+    // private bool isJumping = false;
+    private bool wasGrounded;
+
     void Start()
     {
-        currentHealth = maxHealth; // Initialize health
+        currentHealth = maxHealth;
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        wasGrounded = true;
     }
 
     void Update()
     {
-        Move();
+        if (!isHittingWall) // Only allow movement control when not hitting a wall
+        {
+            Move();
+        }
         Jump();
         Shoot();
         Dash();
@@ -45,27 +54,30 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if (isDashing) return;  // Skip movement if dashing
+        if (isDashing) return;
 
         float horizontal = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-        // Flip the sprite based on movement direction
         if (horizontal != 0)
         {
-            facingDirection = (int)Mathf.Sign(horizontal); // 1 for right, -1 for left
+            facingDirection = (int)Mathf.Sign(horizontal);
             transform.localScale = new Vector3(facingDirection, 1, 1);
         }
     }
 
+
+
     void Jump()
     {
-        // Check for jumping input and whether the player is grounded
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            SoundManager.instance.PlaySFX(JumpSound); // Play jump sound
+            SoundManager.instance.PlaySFX(JumpSound);
+            rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            animator.SetTrigger("jump"); // Trigger jump animation
+            animator.SetTrigger("jump");
+            isGrounded = false; // Immediately set to not grounded
+            wasGrounded = false;
         }
     }
 
@@ -100,8 +112,18 @@ public class PlayerController : MonoBehaviour
     void UpdateAnimator()
     {
         float horizontal = Input.GetAxis("Horizontal");
+        
+        // Track when we first hit the ground
+        if (isGrounded && !wasGrounded)
+        {
+            wasGrounded = true;
+            animator.ResetTrigger("jump"); // Only reset jump trigger when landing
+        }
+        else if (!isGrounded)
+        {
+            wasGrounded = false;
+        }
 
-        // Update the animator parameters
         animator.SetBool("isRunning", horizontal != 0);
         animator.SetBool("isGrounded", isGrounded);
     }
@@ -122,7 +144,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Die()
+     public void Die()
     {
         // Trigger the death animation
         animator.SetTrigger("die");
@@ -138,22 +160,86 @@ public class PlayerController : MonoBehaviour
     // Coroutine to wait before destroying the player
     private IEnumerator DeathDelay()
     {
-        yield return new WaitForSeconds(1f);
-        Destroy(gameObject);
+        yield return new WaitForSeconds(1f);  // Wait for 1 second
+        Destroy(gameObject);  // Destroy the player object
     }
-
-
+   
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
-            isGrounded = true;
+        {
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                float angle = Vector2.Angle(contact.normal, Vector2.up);
+                
+                if (angle < 45f) // Collision from above/below
+                {
+                    isGrounded = true;
+                    isHittingWall = false;
+                }
+                else // Collision from sides (wall)
+                {
+                    if (!isHittingWall)
+                    {
+                        isHittingWall = true;
+                        float bounceDirection = Mathf.Sign(contact.normal.x);
+                        rb.velocity = new Vector2(bounceDirection * wallBounceForce, rb.velocity.y);
+                        facingDirection = (int)bounceDirection;
+                        transform.localScale = new Vector3(facingDirection, 1, 1);
+                        StartCoroutine(ResetWallHit());
+                    }
+                }
+            }
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            bool foundGroundContact = false;
+            
+            foreach (ContactPoint2D contact in collision.contacts)
+            {
+                float angle = Vector2.Angle(contact.normal, Vector2.up);
+                if (angle < 45f)
+                {
+                    foundGroundContact = true;
+                    isGrounded = true;
+                    break;
+                }
+            }
+            
+            // If no ground contact points found, we might be against a wall
+            if (!foundGroundContact && !isHittingWall)
+            {
+                isGrounded = false;
+                // Start wall hit routine if we're pressing against the wall
+                float horizontal = Input.GetAxis("Horizontal");
+                if (Mathf.Abs(horizontal) > 0.1f)
+                {
+                    isHittingWall = true;
+                    StartCoroutine(ResetWallHit());
+                }
+            }
+        }
     }
 
     void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
+        {
             isGrounded = false;
+            isHittingWall = false;
+        }
     }
+
+    private IEnumerator ResetWallHit()
+    {
+        yield return new WaitForSeconds(0.2f); // Increased slightly to prevent rapid wall sticking
+        isHittingWall = false;
+    }
+
     public int getHealth()
     {
         return currentHealth;
