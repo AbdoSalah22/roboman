@@ -6,9 +6,11 @@ public class Projectile : MonoBehaviour
     public int damage = 1;
     public float lifetime = 5f; // Lifetime in seconds
     private int direction = 1;
+    public AudioClip laserSound;
 
     void Start()
     {
+        SoundManager.instance.PlaySFX(laserSound); // Play laser sound
         Destroy(gameObject, lifetime); // Destroy projectile after `lifetime` seconds
     }
 
