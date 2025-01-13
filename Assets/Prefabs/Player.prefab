@@ -140,7 +140,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   groundCheck: {fileID: 0}
-  currentHealth: 0
+  currentHealth: 50
   maxHealth: 100
   dashSpeed: 30
   dashDuration: 0.3
