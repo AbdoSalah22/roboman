@@ -22,24 +22,27 @@ public class ChaserAI : MonoBehaviour
 
     void Update()
     {
-        float distanceToPlayer = Vector2.Distance(transform.position, player.position);
+        if (player != null)
+        {
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position);
 
-        if (distanceToPlayer < detectionRadius)
-        {
-            isChasing = true;
-        }
-        else if (distanceToPlayer > stopChaseRadius)
-        {
-            isChasing = false;
-        }
+            if (distanceToPlayer < detectionRadius)
+            {
+                isChasing = true;
+            }
+            else if (distanceToPlayer > stopChaseRadius)
+            {
+                isChasing = false;
+            }
 
-        if (isChasing)
-        {
-            ChasePlayer();
-        }
-        else
-        {
-            Patrol();
+            if (isChasing)
+            {
+                ChasePlayer();
+            }
+            else
+            {
+                Patrol();
+            }
         }
     }
 

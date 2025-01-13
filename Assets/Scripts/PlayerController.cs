@@ -116,7 +116,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void Die()
+    public void Die()
     {
         // Trigger the death animation
         animator.SetTrigger("die");
