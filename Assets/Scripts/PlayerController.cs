@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
 
     public AudioClip DeathSound;
 
+    public AudioClip runSound;
+
+    public AudioClip HealSound;
+
     public float wallBounceForce = 0f; // Force applied when bouncing off walls
     private bool isHittingWall = false;
     // private bool isJumping = false;
@@ -69,8 +73,9 @@ public class PlayerController : MonoBehaviour
 
     void Move()
     {
-        if (isDashing) return;
 
+        if (isDashing) return;
+        
         float horizontal = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
@@ -111,6 +116,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftShift) && !isDashing) // Trigger dash with Shift
         {
+            SoundManager.instance.PlaySFX(runSound);
             isDashing = true;
             animator.SetTrigger("dash");  // Trigger dash animation
             dashTime = Time.time + dashDuration;
@@ -243,6 +249,7 @@ public class PlayerController : MonoBehaviour
 
     public void Heal(int amount)
     {
+        SoundManager.instance.PlaySFX(HealSound); // Play heal sound
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Prevent overhealing
         Debug.Log("Healed! Current Health: " + currentHealth);

@@ -652,12 +652,20 @@ PrefabInstance:
       value: HealthPickup
       objectReference: {fileID: 0}
     - target: {fileID: 3861537529948642014, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861537529948642014, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3861537529948642014, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3861537529948642014, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -4.5
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 3861537529948642014, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -698,6 +706,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1228911254041406366, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1764924356}
+    - targetCorrespondingSourceObject: {fileID: 1228911254041406366, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1764924358}
+    - targetCorrespondingSourceObject: {fileID: 1228911254041406366, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1764924357}
+    - targetCorrespondingSourceObject: {fileID: 1228911254041406366, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1764924359}
   m_SourcePrefab: {fileID: 100100000, guid: a79c8cd82c5944e45b7e1d1eaf3def1a, type: 3}
 --- !u!1 &1031359405
 GameObject:
@@ -846,6 +863,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1319026973}
   - component: {fileID: 1319026974}
+  - component: {fileID: 1319026975}
   m_Layer: 0
   m_Name: HealthPickup
   m_TagString: Untagged
@@ -882,6 +900,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 25
+  enableHoverEffect: 1
+  hoverHeight: 0.5
+  hoverSpeed: 2
+  enableRotation: 1
+  rotationSpeed: 90
+--- !u!50 &1319026975
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1319026972}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &1412791718
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1107,6 +1157,101 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthAmount: 25
+  enableHoverEffect: 1
+  hoverHeight: 0.5
+  hoverSpeed: 2
+  enableRotation: 1
+  rotationSpeed: 90
+--- !u!114 &1764924357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764924353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef0c2e669a80be4a9e51dc366db37f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  jumpForce: 10
+  projectilePrefab: {fileID: 0}
+  firePoint: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  groundCheck: {fileID: 0}
+  maxHealth: 100
+  dashSpeed: 18
+  dashDuration: 0.3
+  JumpSound: {fileID: 0}
+  DamageSound: {fileID: 0}
+  DeathSound: {fileID: 0}
+  wallBounceForce: 5
+  chargedProjectilePrefab: {fileID: 0}
+--- !u!58 &1764924358
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764924353}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
+--- !u!50 &1764924359
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1764924353}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1888900290
 GameObject:
   m_ObjectHideFlags: 3
