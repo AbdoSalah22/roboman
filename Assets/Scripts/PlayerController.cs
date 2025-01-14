@@ -130,6 +130,13 @@ public class PlayerController : MonoBehaviour
         animator.SetBool("isGrounded", isGrounded);
     }
 
+    public void Heal(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Prevent overhealing
+        Debug.Log("Healed! Current Health: " + currentHealth);
+    }
+
     public void TakeDamage(int damage)
     {
         SoundManager.instance.PlaySFX(DamageSound); // Play damage sound
