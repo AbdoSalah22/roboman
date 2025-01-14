@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -284,6 +285,7 @@ public class PlayerController : MonoBehaviour
 
         // Start the coroutine to destroy the player after a delay
         StartCoroutine(DeathDelay());
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     // Coroutine to wait before destroying the player

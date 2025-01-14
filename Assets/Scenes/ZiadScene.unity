@@ -1042,6 +1042,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7799672278155022432, guid: 26e7bd5476df05a4e8608ae14995611f, type: 3}
+      propertyPath: runSound
+      value: 
+      objectReference: {fileID: 8300000, guid: aa30982e890d8614698c4a69220195c8, type: 3}
+    - target: {fileID: 7799672278155022432, guid: 26e7bd5476df05a4e8608ae14995611f, type: 3}
+      propertyPath: HealSound
+      value: 
+      objectReference: {fileID: 8300000, guid: ca5ccee66631c934e9b3cda238c11a33, type: 3}
+    - target: {fileID: 7799672278155022432, guid: 26e7bd5476df05a4e8608ae14995611f, type: 3}
       propertyPath: JumpSound
       value: 
       objectReference: {fileID: 8300000, guid: b861767e73346d044a04b667b21853e2, type: 3}
@@ -1188,6 +1196,8 @@ MonoBehaviour:
   JumpSound: {fileID: 0}
   DamageSound: {fileID: 0}
   DeathSound: {fileID: 0}
+  runSound: {fileID: 0}
+  HealSound: {fileID: 0}
   wallBounceForce: 5
   chargedProjectilePrefab: {fileID: 0}
 --- !u!58 &1764924358
@@ -1510,6 +1520,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: SoundManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4063496240883494555, guid: 664299701aaafd444af81b12ea08bf89, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4063496240883494555, guid: 664299701aaafd444af81b12ea08bf89, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 5baccd8f5c1d1a043879f3063ec2c928, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
