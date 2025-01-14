@@ -255,7 +255,6 @@ public class PlayerController : MonoBehaviour
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth); // Prevent overhealing
         Debug.Log("Healed! Current Health: " + currentHealth);
     }
-
     public void TakeDamage(int damage)
     {
         SoundManager.instance.PlaySFX(DamageSound); // Play damage sound

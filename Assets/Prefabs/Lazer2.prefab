@@ -99,9 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dba7f17e2b26c64d9759b1654758766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 15
+  speed: 25
   damage: 20
-  laserSound: {fileID: 8300000, guid: 3b9b29a8ff142684a949ea6598472bb6, type: 3}
+  laserSound: {fileID: 8300000, guid: 91bc9bb9d3c8d4c45b2af91688de5537, type: 3}
 --- !u!70 &8167998739189973607
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
