@@ -10,7 +10,7 @@ public class ShooterProjectile : MonoBehaviour
     void Start()
     {
         SoundManager.instance.PlaySFX(laserSound); // Play laser sound
-        Destroy(gameObject, 8); // Destroy projectile after `lifetime` seconds
+        Destroy(gameObject, 4); // Destroy projectile after `lifetime` seconds
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
