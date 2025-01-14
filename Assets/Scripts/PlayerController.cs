@@ -34,6 +34,18 @@ public class PlayerController : MonoBehaviour
     // private bool isJumping = false;
     private bool wasGrounded;
 
+    // Secondary Attack variables
+    public GameObject chargedProjectilePrefab; // Prefab for the charged projectile
+    private float chargeTime = 1f; // Time needed to charge the attack
+    private float cooldownTime = 2f; // Cooldown duration
+    private float currentChargeTime = 0f;
+    private bool isCharging = false;
+    private bool fullyCharged = false;
+    private float lastChargedShotTime = -5f; // Initialize to allow first shot immediately
+
+    // Optional: Visual feedback
+    //public GameObject chargingEffect; // Assign a particle system or visual indicator in inspector
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -51,6 +63,7 @@ public class PlayerController : MonoBehaviour
         Jump();
         Shoot();
         Dash();
+        HandleSecondaryAttack();
         UpdateAnimator();
     }
 
@@ -109,6 +122,104 @@ public class PlayerController : MonoBehaviour
         {
             isDashing = false;
         }
+    }
+
+    void HandleSecondaryAttack()
+    {
+        // Check if attack is on cooldown
+        float timeSinceLastShot = Time.time - lastChargedShotTime;
+        bool canStartCharge = timeSinceLastShot >= cooldownTime;
+
+        // Start charging
+        if (Input.GetMouseButtonDown(1) && canStartCharge)
+        {
+            StartCharging();
+        }
+
+        // Continue charging
+        if (Input.GetMouseButton(1) && isCharging)
+        {
+            ContinueCharging();
+        }
+
+        // Release or cancel charge
+        if (Input.GetMouseButtonUp(1))
+        {
+            if (fullyCharged)
+            {
+                ReleaseChargedShot();
+            }
+            else
+            {
+                CancelCharge();
+            }
+        }
+    }
+
+
+    void StartCharging()
+    {
+        isCharging = true;
+        currentChargeTime = 0f;
+        fullyCharged = false;
+
+        // Optional: Enable charging effect
+        //if (chargingEffect != null)
+        //{
+        //    chargingEffect.SetActive(true);
+        //}
+    }
+
+    void ContinueCharging()
+    {
+        currentChargeTime += Time.deltaTime;
+        animator.SetBool("isCharging", true);
+
+        // Check if fully charged
+        if (currentChargeTime >= chargeTime && !fullyCharged)
+        {
+            fullyCharged = true;
+            // Optional: Play charge complete effect/sound
+            Debug.Log("Attack Fully Charged!");
+        }
+    }
+
+    void ReleaseChargedShot()
+    {
+        // Create and setup the charged projectile
+        animator.SetBool("isCharging", false);
+        GameObject projectile = Instantiate(chargedProjectilePrefab, firePoint.position, firePoint.rotation);
+        ChargedProjectile chargedProj = projectile.GetComponent<ChargedProjectile>();
+
+        if (chargedProj != null)
+        {
+            chargedProj.SetDirection(facingDirection);
+            chargedProj.damage = 20; // Set damage value
+        }
+
+        // Reset charging state
+        ResetChargeState();
+        lastChargedShotTime = Time.time;
+    }
+
+    void CancelCharge()
+    {
+        ResetChargeState();
+        animator.SetBool("isCharging", false);
+        Debug.Log("Attack Cancelled!");
+    }
+
+    void ResetChargeState()
+    {
+        isCharging = false;
+        fullyCharged = false;
+        currentChargeTime = 0f;
+
+        // Optional: Disable charging effect
+        //if (chargingEffect != null)
+        //{
+        //    chargingEffect.SetActive(false);
+        //}
     }
 
     void UpdateAnimator()
