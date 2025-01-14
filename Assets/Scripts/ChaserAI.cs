@@ -3,8 +3,8 @@ using UnityEngine;
 public class ChaserAI : MonoBehaviour
 {
     public Transform player; // Assign the player in the Inspector
-    public Transform waypoint1, waypoint2; // Assign waypoints in the Inspector
-    private float patrolSpeed = 3f;
+    //public Transform waypoint1, waypoint2; // Assign waypoints in the Inspector
+    private float patrolSpeed = 0f;
     private float chaseSpeed = 6f;
     private float detectionRadius = 15f;
     private float stopChaseRadius = 20f;
@@ -17,7 +17,7 @@ public class ChaserAI : MonoBehaviour
 
     void Start()
     {
-        nextWaypoint = waypoint1.position;
+        //nextWaypoint = waypoint1.position;
     }
 
     void Update()
@@ -53,7 +53,7 @@ public class ChaserAI : MonoBehaviour
         // Switch waypoints when the enemy reaches the current one
         if (Vector2.Distance(transform.position, nextWaypoint) < 0.5f)
         {
-            nextWaypoint = nextWaypoint == waypoint1.position ? waypoint2.position : waypoint1.position;
+            //nextWaypoint = nextWaypoint == waypoint1.position ? waypoint2.position : waypoint1.position;
         }
     }
 

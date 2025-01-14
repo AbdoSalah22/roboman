@@ -147,10 +147,10 @@ MonoBehaviour:
   JumpSound: {fileID: 8300000, guid: 5ea2f9f1d2f2b4948af056ac9eeb7c2a, type: 3}
   DamageSound: {fileID: 8300000, guid: d2e4c30e7904305479090d6dd79ce80b, type: 3}
   DeathSound: {fileID: 8300000, guid: c8f960a70666e0a478ca21de44923cf9, type: 3}
+  runSound: {fileID: 8300000, guid: aa30982e890d8614698c4a69220195c8, type: 3}
+  HealSound: {fileID: 8300000, guid: ca5ccee66631c934e9b3cda238c11a33, type: 3}
   wallBounceForce: 0
   chargedProjectilePrefab: {fileID: 4727662341913208427, guid: 766f1d047a7ac1e4a89d8d947b67915b, type: 3}
-  chargeTime: 3
-  cooldownTime: 5
 --- !u!50 &8927781487616088668
 Rigidbody2D:
   serializedVersion: 4
